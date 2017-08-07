@@ -1,0 +1,14 @@
+name: HypixelCore
+author: Ikeetjeop
+version: 1.0
+main: me.Ikeetjeop.hypixel.HypixelCore
+description: My plugin
+commands:
+  setlobby:
+    description: Admin
+  spawn:
+    description: everyone
+  fly:
+    description: everyone
+  rank:
+    description: everyone
