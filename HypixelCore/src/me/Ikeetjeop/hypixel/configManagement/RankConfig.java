@@ -1,4 +1,4 @@
-package me.Ikeetjeop.hypixel.ConfigManagement;
+package me.Ikeetjeop.hypixel.configManagement;
 
 import java.util.Set;
 
@@ -16,10 +16,11 @@ public class RankConfig extends ConfigManager {
 		config.set("Hypixel.Ranks.MODERATOR.Chat", "&a[MOD] {username}&f: ");
 		config.set("Hypixel.Ranks.HELPER.Chat", "&9[HELPER] {username}&f: ");
 		config.set("Hypixel.Ranks.BUILDTEAM.Chat", "&2[BUILD TEAM] {username}&f: ");
-		config.set("Hypixel.Ranks.SLOTH.Chat", "&c[Sloth] {username}&f: ");
-		config.set("Hypixel.Ranks.APPLE.Chat", "&6[Apple] {username}&f: ");
+		config.set("Hypixel.Ranks.SLOTH.Chat", "&c[SLOTH] {username}&f: ");
+		config.set("Hypixel.Ranks.APPLE.Chat", "&6[APPLE] {username}&f: ");
 		config.set("Hypixel.Ranks.BEAM.Chat", "&2[BEAM] {username}&f: ");
 		config.set("Hypixel.Ranks.MOJANG.Chat", "&6[MOJANG] {username}&f: ");
+		config.set("Hypixel.Ranks.YT.Chat", "&6[YT] {username}&f: ");
 		config.set("Hypixel.Ranks.MVP+.Chat", "&b[MVP{Pluse}&b] {username}&f: ");
 		config.set("Hypixel.Ranks.MVP.Chat", "&b[MVP] {username}&f: ");
 		config.set("Hypixel.Ranks.VIP+.Chat", "&a[Vip&6+&a] {username}&f: ");

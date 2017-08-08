@@ -6,7 +6,7 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import me.Ikeetjeop.hypixel.HypixelCore;
-import me.Ikeetjeop.hypixel.ConfigManagement.SpawnData;
+import me.Ikeetjeop.hypixel.configManagement.SpawnData;
 
 public class Spawncmd implements CommandExecutor{
 	private HypixelCore plugin;

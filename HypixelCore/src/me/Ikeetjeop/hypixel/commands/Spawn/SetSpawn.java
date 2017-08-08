@@ -6,10 +6,10 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
 import me.Ikeetjeop.hypixel.HypixelCore;
-import me.Ikeetjeop.hypixel.ConfigManagement.SpawnData;
-import me.Ikeetjeop.hypixel.JavaShit.Rank;
-import me.Ikeetjeop.hypixel.JavaShit.Text;
-import me.Ikeetjeop.hypixel.JavaShit.Text.text;
+import me.Ikeetjeop.hypixel.configManagement.SpawnData;
+import me.Ikeetjeop.hypixel.utilities.Rank;
+import me.Ikeetjeop.hypixel.utilities.Text;
+import me.Ikeetjeop.hypixel.utilities.Text.text;
 
 public class SetSpawn implements CommandExecutor{
 	private HypixelCore plugin;

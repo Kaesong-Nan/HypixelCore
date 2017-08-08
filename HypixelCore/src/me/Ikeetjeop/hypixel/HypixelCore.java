@@ -6,25 +6,29 @@ import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import me.Ikeetjeop.hypixel.ConfigManagement.RankConfig;
-import me.Ikeetjeop.hypixel.ConfigManagement.SpawnData;
 import me.Ikeetjeop.hypixel.Listener.Chat.ChatListener;
+import me.Ikeetjeop.hypixel.Listener.OnJoin.OnJoin;
 import me.Ikeetjeop.hypixel.commands.Fly.Flycmd;
 import me.Ikeetjeop.hypixel.commands.Spawn.SetSpawn;
 import me.Ikeetjeop.hypixel.commands.Spawn.Spawncmd;
 import me.Ikeetjeop.hypixel.commands.UpdateRank.RankCMD;
+import me.Ikeetjeop.hypixel.configManagement.RankConfig;
+import me.Ikeetjeop.hypixel.configManagement.SpawnData;
+import me.Ikeetjeop.hypixel.utilities.mysql.MysqlInfo;
+import me.Ikeetjeop.hypixel.utilities.mysql.Mysqldata;
 
 public class HypixelCore extends JavaPlugin{
 	private static HypixelCore instance;
 	public HypixelCore() {
 		instance = this;
 	}
-
+	
+	
 	public void onEnable(){
 		RegisterConfigs();
-		MessageStartUp();
 		RegisterCommands();
 		RegisterListener();
+		MysqlInfo.mysqlSetup();
 	}
 	public void onDisable(){
 	}
@@ -52,7 +56,9 @@ public class HypixelCore extends JavaPlugin{
 	}
 	public void RegisterListener(){
 		PluginManager pm = Bukkit.getPluginManager();
+		pm.registerEvents(new Mysqldata(), this);
 		pm.registerEvents(new ChatListener(this), this);
+		pm.registerEvents(new OnJoin(), this);
 
 	}
 	public void MessageStartUp(){
@@ -63,5 +69,5 @@ public class HypixelCore extends JavaPlugin{
     public static HypixelCore getInstance() {
         return instance;
     }
-
+    
 }

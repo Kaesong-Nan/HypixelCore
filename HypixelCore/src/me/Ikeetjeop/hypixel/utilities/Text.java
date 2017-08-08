@@ -1,4 +1,4 @@
-package me.Ikeetjeop.hypixel.JavaShit;
+package me.Ikeetjeop.hypixel.utilities;
 
 import org.bukkit.ChatColor;
 import org.bukkit.command.CommandSender;

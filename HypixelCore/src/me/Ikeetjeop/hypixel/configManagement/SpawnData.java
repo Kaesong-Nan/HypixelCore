@@ -1,4 +1,4 @@
-package me.Ikeetjeop.hypixel.ConfigManagement;
+package me.Ikeetjeop.hypixel.configManagement;
 
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
@@ -6,7 +6,7 @@ import org.bukkit.World;
 import org.bukkit.entity.Player;
 
 import me.Ikeetjeop.hypixel.HypixelCore;
-import me.Ikeetjeop.hypixel.JavaShit.Rank;
+import me.Ikeetjeop.hypixel.utilities.Rank;
 
 public class SpawnData extends ConfigManager{
 

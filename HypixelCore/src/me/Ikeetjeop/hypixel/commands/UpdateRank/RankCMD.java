@@ -7,9 +7,9 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import me.Ikeetjeop.hypixel.JavaShit.Rank;
-import me.Ikeetjeop.hypixel.JavaShit.Text;
-import me.Ikeetjeop.hypixel.JavaShit.Text.text;
+import me.Ikeetjeop.hypixel.utilities.Rank;
+import me.Ikeetjeop.hypixel.utilities.Text;
+import me.Ikeetjeop.hypixel.utilities.Text.text;
 
 public class RankCMD implements CommandExecutor{
 
@@ -30,16 +30,25 @@ public class RankCMD implements CommandExecutor{
 					}else if(args.length == 1){
 						if(args[0].equalsIgnoreCase("set")){
 							Text.message(p, text.incorrect, "/rank set <Rank>");
+						} else if(args[0].equalsIgnoreCase("list")){
+							Text.message(sender, text.sendMessage ,"Rank list:");
+							for(Rank r :  Rank.values())
+								Text.message(sender, text.sendMessage ,">> " + ChatColor.YELLOW + "Name: " + ChatColor.GOLD +  r.toString().toLowerCase() + ChatColor.YELLOW + " Prefix: " + r.Color + r.Prefix.toString().replace("{Mpluse}", ChatColor.RED + "+" + ChatColor.AQUA).replace("{Vpluse}", ChatColor.GOLD + "+" + ChatColor.GREEN));
 						}
+
 					}else if(args.length == 2){
-						if(args[0].equalsIgnoreCase("set")){
-							Rank.setRank(p, Rank.valueOf(args[1].toUpperCase()));
-							Text.message(p, text.Alert, "Your rank has been set!");
+						try{
+							if(args[0].equalsIgnoreCase("set")){
+								Text.message(sender, text.incorrect, "/rank set " + args[1] + " <player>");
+							}
+						}catch (IllegalArgumentException e) {
+							p.sendMessage(ChatColor.GOLD + "Unknow rank!");
 						}
+
 					}else if(args.length == 3){
 						Player target = Bukkit.getPlayer(args[2]);
 						if(target == null){
-							Text.message(p, text.sendMessage,"OFFLINE PLAYER:" + args[2]);
+							Text.message(p, text.sendMessage,"OFFLINE PLAYER: " + args[2]);
 						}else{
 							try{
 								Rank.setRank(target, Rank.valueOf(args[1].toUpperCase()));
@@ -63,19 +72,27 @@ public class RankCMD implements CommandExecutor{
 				}else if(args.length == 1){
 					if(args[0].equalsIgnoreCase("set")){
 						Text.message(sender, text.incorrect, "/rank set <Rank> <player>");
+					} else if(args[0].equalsIgnoreCase("list")){
+						Text.message(sender, text.sendMessage ,"Rank list:");
+						for(Rank r :  Rank.values())
+							Text.message(sender, text.sendMessage ,">> " + ChatColor.YELLOW + "Name: " + ChatColor.GOLD +  r.toString().toLowerCase() + ChatColor.YELLOW + " Prefix: " + r.Color + r.Prefix.toString().replace("{Mpluse}", ChatColor.RED + "+" + ChatColor.AQUA).replace("{Vpluse}", ChatColor.GOLD + "+" + ChatColor.GREEN));
 					}
 				}else if(args.length == 2){
-					Text.message(sender, text.incorrect, "/rank set " + args[1] + " <player>");
+					if(args[0].equalsIgnoreCase("set")){
+						Text.message(sender, text.incorrect, "/rank set " + args[1] + " <player>");
+					}
 				}else if(args.length == 3){
-					Player target = Bukkit.getPlayer(args[2]);
-					if(target == null){
-						sender.sendMessage("OFFLINE PLAYER:" + args[2] + " MISSING RANK: " + args[1]);
-					}else{
-						try{
-							Rank.setRank(target, Rank.valueOf(args[1].toUpperCase()));
-							Text.message(sender, text.Alert, target.getName() + " is now rank: " + args[1]);
-						}catch (IllegalArgumentException e) {
-							sender.sendMessage("UNKNOW RANK");
+					if(args[0].equalsIgnoreCase("set")){
+						Player target = Bukkit.getPlayer(args[2]);
+						if(target == null){
+							sender.sendMessage("OFFLINE PLAYER:" + args[2] + " Is not online and bounght ranK: " + args[1]);
+						}else{
+							try{
+								Rank.setRank(target, Rank.valueOf(args[1].toUpperCase()));
+								Text.message(sender, text.Alert, target.getName() + " is now rank: " + args[1]);
+							}catch (IllegalArgumentException e) {
+								sender.sendMessage(ChatColor.GOLD + "Unknow rank!");
+							}
 						}
 					}
 				}

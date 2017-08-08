@@ -7,9 +7,9 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import me.Ikeetjeop.hypixel.JavaShit.Rank;
-import me.Ikeetjeop.hypixel.JavaShit.Text;
-import me.Ikeetjeop.hypixel.JavaShit.Text.text;
+import me.Ikeetjeop.hypixel.utilities.Rank;
+import me.Ikeetjeop.hypixel.utilities.Text;
+import me.Ikeetjeop.hypixel.utilities.Text.text;
 
 public class Flycmd implements CommandExecutor{
 

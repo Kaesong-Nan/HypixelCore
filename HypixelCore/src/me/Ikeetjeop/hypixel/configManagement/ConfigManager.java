@@ -1,4 +1,4 @@
-package me.Ikeetjeop.hypixel.ConfigManagement;
+package me.Ikeetjeop.hypixel.configManagement;
 
 import java.io.File;
 import java.io.IOException;
