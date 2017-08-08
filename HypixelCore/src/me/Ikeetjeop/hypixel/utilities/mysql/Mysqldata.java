@@ -14,6 +14,14 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
 public class Mysqldata implements Listener{
 	
+	private static Mysqldata instance;
+	public Mysqldata() {
+		instance = this;
+	}
+	public static Mysqldata getInstance() {
+		return instance;
+	}
+	
 	
 	@EventHandler
 	public void onJoin(PlayerJoinEvent e){
@@ -26,7 +34,7 @@ public class Mysqldata implements Listener{
 	
 	public boolean playerExists(UUID uuid){
 		try {
-			PreparedStatement statement = MysqlInfo.getConnection().prepareStatement("SELECT * FROM " + MysqlInfo.table + "WHERE UUID=?");
+			PreparedStatement statement = MysqlInfo.getInstance().getConnection().prepareStatement("SELECT * FROM " + MysqlInfo.getInstance().table + "WHERE UUID=?");
 			statement.setString(1, uuid.toString());
 			
 			ResultSet results = statement.executeQuery();
@@ -43,13 +51,13 @@ public class Mysqldata implements Listener{
 	
 	public void createPlayer(final UUID uuid, Player player){
 		try{
-			PreparedStatement statement = MysqlInfo.getConnection().prepareStatement("SELECT * FROM " + MysqlInfo.table + "WHERE UUID=?");
+			PreparedStatement statement = MysqlInfo.getInstance().getConnection().prepareStatement("SELECT * FROM " + MysqlInfo.getInstance().table + " WHERE UUID=?");
 			statement.setString(1, uuid.toString());
 			ResultSet results = statement.executeQuery();
 			results.next();
 			if(playerExists(uuid) != true){
-				PreparedStatement insert = MysqlInfo.getConnection()
-						.prepareStatement("INSERT INTO " + MysqlInfo.table + "(UUID,NAME,COINS) VALUE (?,?,?)");
+				PreparedStatement insert = MysqlInfo.getInstance().getConnection()
+						.prepareStatement("INSERT INTO " + MysqlInfo.getInstance().table + "(UUID,NAME,COINS) VALUE (?,?,?)");
 				insert.setString(1, uuid.toString());
 				insert.setString(2, player.getName().toString());
 				insert.setInt(3, 500);
@@ -61,12 +69,12 @@ public class Mysqldata implements Listener{
 			e.printStackTrace();
 		}
 	}
-    public static void createTable() {
+    public void createTable() {
         try {
  
-            Statement statement = MysqlInfo.getConnection().createStatement();
+            Statement statement = MysqlInfo.getInstance().getConnection().createStatement();
 
-            statement.executeUpdate("CREATE TABLE IF NOT EXISTS PlayerData (UUID varchar(32), NAME varchar(16), tokens INT(10))");
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS (UUID varchar(32), NAME varchar(16), tokens INT(10))");
             statement.close();
         } catch (SQLException e) {
             e.printStackTrace();

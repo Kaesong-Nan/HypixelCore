@@ -23,12 +23,12 @@ public class HypixelCore extends JavaPlugin{
 		instance = this;
 	}
 	
-	
+	MysqlInfo mysqlInfo = new MysqlInfo();
 	public void onEnable(){
 		RegisterConfigs();
 		RegisterCommands();
 		RegisterListener();
-		MysqlInfo.mysqlSetup();
+		mysqlInfo.mysqlSetup();
 	}
 	public void onDisable(){
 	}

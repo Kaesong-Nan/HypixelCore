@@ -10,13 +10,21 @@ import org.bukkit.ChatColor;
 import me.Ikeetjeop.hypixel.HypixelCore;
 
 public class MysqlInfo {
-	public static Connection connection;
-	public static String host, database, username, password;
-	public static String table;
-	public static int port;
+	protected Connection connection;
+	protected String host, database, username, password;
+	protected String table;
+	protected int port;
+
+	private static MysqlInfo instance;
+	public MysqlInfo() {
+		instance = this;
+	}
+	public static MysqlInfo getInstance() {
+		return instance;
+	}
 
 	public static HypixelCore plugin = HypixelCore.getInstance();
-	public static void mysqlSetup(){
+	public void mysqlSetup(){
 		host = plugin.getConfig().getString("MysqlConnection.host");
 		port = plugin.getConfig().getInt("MysqlConnection.port");
 		username = plugin.getConfig().getString("MysqlConnection.username");
@@ -31,11 +39,11 @@ public class MysqlInfo {
 				}
 
 				Class.forName("com.mysql.jdbc.Driver");
-				setConnection(DriverManager.getConnection("jdbc:mysql://" + MysqlInfo.host + ":" 
-						+ MysqlInfo.port + "/" + MysqlInfo.database, MysqlInfo.username, MysqlInfo.password));
+				setConnection(DriverManager.getConnection("jdbc:mysql://" + this.host + ":" 
+						+ this.port + "/" + this.database, this.username, this.password));
 
 				Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "MYSQL CONNETCTTETETET!!! :=DD");
-				Mysqldata.createTable();
+				Mysqldata.getInstance().createTable();
 			}
 		}catch (SQLException e) {
 			e.printStackTrace();
@@ -44,12 +52,12 @@ public class MysqlInfo {
 		}
 	}
 
-	private static Connection setConnection(Connection connection) {
+	private Connection setConnection(Connection connection) {
 		return connection;
 	}
 
-	public static Connection getConnection() {
+	public Connection getConnection() {
 		return connection;
 	}
-
 }
+
