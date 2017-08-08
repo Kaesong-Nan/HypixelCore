@@ -35,6 +35,7 @@ public class MysqlInfo {
 						+ MysqlInfo.port + "/" + MysqlInfo.database, MysqlInfo.username, MysqlInfo.password));
 
 				Bukkit.getConsoleSender().sendMessage(ChatColor.GREEN + "MYSQL CONNETCTTETETET!!! :=DD");
+				Mysqldata.createTable();
 			}
 		}catch (SQLException e) {
 			e.printStackTrace();

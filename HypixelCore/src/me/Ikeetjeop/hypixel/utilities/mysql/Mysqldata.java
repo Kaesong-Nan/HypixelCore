@@ -49,7 +49,7 @@ public class Mysqldata implements Listener{
 			results.next();
 			if(playerExists(uuid) != true){
 				PreparedStatement insert = MysqlInfo.getConnection()
-						.prepareStatement("INSERT INTO " + MysqlInfo.table + "(UUID, NAME,COINS) VALUE (?,?,?)");
+						.prepareStatement("INSERT INTO " + MysqlInfo.table + "(UUID,NAME,COINS) VALUE (?,?,?)");
 				insert.setString(1, uuid.toString());
 				insert.setString(2, player.getName().toString());
 				insert.setInt(3, 500);
@@ -66,7 +66,7 @@ public class Mysqldata implements Listener{
  
             Statement statement = MysqlInfo.getConnection().createStatement();
 
-            statement.executeUpdate("CREATE TABLE IF NOT EXISTS PlayerData (UUID varchar(32), UUID varchar(16), tokens INT(10))");
+            statement.executeUpdate("CREATE TABLE IF NOT EXISTS PlayerData (UUID varchar(32), NAME varchar(16), tokens INT(10))");
             statement.close();
         } catch (SQLException e) {
             e.printStackTrace();
