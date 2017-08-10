@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 import me.Ikeetjeop.hypixel.utilities.Rank;
 import me.Ikeetjeop.hypixel.utilities.Text;
 import me.Ikeetjeop.hypixel.utilities.Text.text;
+import me.Ikeetjeop.hypixel.utilities.playerData.UserDataHandler;
 
 public class RankCMD implements CommandExecutor{
 
@@ -90,6 +91,11 @@ public class RankCMD implements CommandExecutor{
 							try{
 								Rank.setRank(target, Rank.valueOf(args[1].toUpperCase()));
 								Text.message(sender, text.Alert, target.getName() + " is now rank: " + args[1]);
+								if(Rank.getRank(target) == Rank.DEFAULT){
+									target.setPlayerListName(ChatColor.GRAY + target.getName());
+								}else {
+								target.setPlayerListName(Rank.getRank(target).Color + ChatColor.translateAlternateColorCodes('&', Rank.getRank(target).Prefix.replace("{Mpluse}", UserDataHandler.getUserFile(target).getString("Pluse") + "&b").replace("{Vpluse}", "&6+&a")) + " " + target.getName());
+								}
 							}catch (IllegalArgumentException e) {
 								sender.sendMessage(ChatColor.GOLD + "Unknow rank!");
 							}

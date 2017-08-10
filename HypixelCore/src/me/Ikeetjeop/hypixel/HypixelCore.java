@@ -12,10 +12,8 @@ import me.Ikeetjeop.hypixel.commands.Fly.Flycmd;
 import me.Ikeetjeop.hypixel.commands.Spawn.SetSpawn;
 import me.Ikeetjeop.hypixel.commands.Spawn.Spawncmd;
 import me.Ikeetjeop.hypixel.commands.UpdateRank.RankCMD;
+import me.Ikeetjeop.hypixel.configManagement.Messages;
 import me.Ikeetjeop.hypixel.configManagement.RankConfig;
-import me.Ikeetjeop.hypixel.configManagement.SpawnData;
-import me.Ikeetjeop.hypixel.utilities.mysql.MysqlInfo;
-import me.Ikeetjeop.hypixel.utilities.mysql.Mysqldata;
 
 public class HypixelCore extends JavaPlugin{
 	private static HypixelCore instance;
@@ -23,12 +21,10 @@ public class HypixelCore extends JavaPlugin{
 		instance = this;
 	}
 	
-	MysqlInfo mysqlInfo = new MysqlInfo();
 	public void onEnable(){
 		RegisterConfigs();
 		RegisterCommands();
 		RegisterListener();
-		mysqlInfo.mysqlSetup();
 	}
 	public void onDisable(){
 	}
@@ -39,16 +35,18 @@ public class HypixelCore extends JavaPlugin{
 		getCommand("rank").setExecutor(new RankCMD());
 
 	}
-	@SuppressWarnings("unused")
-	private SpawnData SpawnData;
+	private Messages messages;
 	private RankConfig RankConfig;
+	
 	public void RegisterConfigs(){
 			if(!getDataFolder().exists()){
 				getDataFolder().mkdirs();
 			}
 		this.RankConfig = new RankConfig(this);
-		this.SpawnData = new SpawnData(this);
+		this.messages = new Messages(this);
+		
 		RankConfig.RegisterRank();
+		messages.registerMessages();
 		getConfig().addDefault("Hypixel.Messages.Server.Prefix", "&6[HP]");
 		getConfig().options().copyDefaults(true);
 		saveConfig();
@@ -56,7 +54,6 @@ public class HypixelCore extends JavaPlugin{
 	}
 	public void RegisterListener(){
 		PluginManager pm = Bukkit.getPluginManager();
-		pm.registerEvents(new Mysqldata(), this);
 		pm.registerEvents(new ChatListener(this), this);
 		pm.registerEvents(new OnJoin(), this);
 

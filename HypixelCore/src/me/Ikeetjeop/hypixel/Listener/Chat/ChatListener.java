@@ -9,6 +9,7 @@ import org.bukkit.event.player.PlayerChatEvent;
 import me.Ikeetjeop.hypixel.HypixelCore;
 import me.Ikeetjeop.hypixel.configManagement.RankConfig;
 import me.Ikeetjeop.hypixel.utilities.Rank;
+import me.Ikeetjeop.hypixel.utilities.playerData.UserDataHandler;
 @SuppressWarnings("deprecation")
 public class ChatListener implements Listener{
 	private HypixelCore Main;
@@ -22,7 +23,8 @@ public class ChatListener implements Listener{
 	public void OnChat(PlayerChatEvent e){
 		Player p = e.getPlayer();
 		this.RankConfig = new RankConfig(Main);
-		e.setFormat(ChatColor.translateAlternateColorCodes('&', RankConfig.GetString("Hypixel.Ranks." + Rank.getRank(p) + ".Chat").replace("{username}", p.getName())) + e.getMessage().replace("%", "%%"));
+		e.setFormat(ChatColor.translateAlternateColorCodes('&', RankConfig.GetString("Hypixel.Ranks." + Rank.getRank(p) + ".Chat").replace("{Pluse}", UserDataHandler.getUserFile(p).getString("Pluse")).replace("{username}", p.getName())) 
+				+ e.getMessage().replace("%", "%%"));
 	}
 
 }

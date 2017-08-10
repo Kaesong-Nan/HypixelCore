@@ -1,10 +1,8 @@
 package me.Ikeetjeop.hypixel.utilities;
 import org.bukkit.ChatColor;
-import org.bukkit.OfflinePlayer;
-import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.entity.Player;
 
-import me.Ikeetjeop.hypixel.HypixelCore;
+import me.Ikeetjeop.hypixel.utilities.playerData.UserDataHandler;
 
 public enum Rank
 {
@@ -32,9 +30,6 @@ public enum Rank
 	public String Prefix;
 	public int piority;
 	public ChatColor Color;
-	public boolean IsStaff;
-	public boolean IsDonator;
-	public boolean IsOp;
 
 	private Rank(String name, String Prefix, int piority, ChatColor color)
 	{
@@ -43,7 +38,6 @@ public enum Rank
 		this.piority = piority;
 		this.Color = color;
 	}
-	private static FileConfiguration config = HypixelCore.getInstance().getConfig();
 
 	public String GetName() {
 		return this.Name;
@@ -56,7 +50,7 @@ public enum Rank
 	}
 
 	public static Rank getRank(Player player) {
-		String val = config.getString("Ranks." + player.getUniqueId());
+		String val = UserDataHandler.getUserFile(player).getString("Rank");
 		return (val == null ? Rank.DEFAULT : Rank.valueOf(val));
 	}
 
@@ -64,15 +58,9 @@ public enum Rank
 		return (Rank.getRank(player).compareTo(rank) <= 0);
 	}
 
-	public static void setRank(OfflinePlayer target, Rank rank) {
-		config.set("Ranks." + target.getUniqueId(), rank.toString());
-		HypixelCore.getInstance().saveConfig();
-		System.out.println("[Debug] Player: " + target.getName() + " has now rank: " + rank.GetName());
-	}
-
-	public static void get(Player player, Rank rank) {
-		config.set("Ranks." + player.getUniqueId(), rank.toString());
-		HypixelCore.getInstance().saveConfig();
+	public static void setRank(Player player, Rank rank) {
+		UserDataHandler.setdata(player, "Rank", rank.toString());
+		System.out.println("[Debug] Player: " + player.getName() + " has now rank: " + rank.GetName());
 	}
 	public int getPiority() {
 		return piority;
