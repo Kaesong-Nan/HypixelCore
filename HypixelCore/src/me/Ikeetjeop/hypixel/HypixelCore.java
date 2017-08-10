@@ -8,7 +8,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scoreboard.Scoreboard;
 
 import me.Ikeetjeop.hypixel.Listener.Chat.ChatListener;
-import me.Ikeetjeop.hypixel.Listener.OnJoin.OnJoin;
+import me.Ikeetjeop.hypixel.Listener.Connect.JoinListener;
 import me.Ikeetjeop.hypixel.commands.Fly.FlyCMD;
 import me.Ikeetjeop.hypixel.commands.Spawn.SetSpawn;
 import me.Ikeetjeop.hypixel.commands.Spawn.SpawnCMD;
@@ -58,7 +58,7 @@ public class HypixelCore extends JavaPlugin{
 	public void RegisterListener(){
 		PluginManager pm = Bukkit.getPluginManager();
 		pm.registerEvents(new ChatListener(this), this);
-		pm.registerEvents(new OnJoin(), this);
+		pm.registerEvents(new JoinListener(), this);
 
 	}
 	public void MessageStartUp(){
