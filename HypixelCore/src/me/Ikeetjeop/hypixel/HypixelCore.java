@@ -5,6 +5,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scoreboard.Scoreboard;
 
 import me.Ikeetjeop.hypixel.Listener.Chat.ChatListener;
 import me.Ikeetjeop.hypixel.Listener.OnJoin.OnJoin;
@@ -20,11 +21,13 @@ public class HypixelCore extends JavaPlugin{
 	public HypixelCore() {
 		instance = this;
 	}
-	
+	public Scoreboard s = Bukkit.getScoreboardManager().getMainScoreboard();
+
 	public void onEnable(){
 		RegisterConfigs();
 		RegisterCommands();
 		RegisterListener();
+		registerRankTag();
 	}
 	public void onDisable(){
 	}
@@ -37,14 +40,14 @@ public class HypixelCore extends JavaPlugin{
 	}
 	private Messages messages;
 	private RankConfig RankConfig;
-	
+
 	public void RegisterConfigs(){
-			if(!getDataFolder().exists()){
-				getDataFolder().mkdirs();
-			}
+		if(!getDataFolder().exists()){
+			getDataFolder().mkdirs();
+		}
 		this.RankConfig = new RankConfig(this);
 		this.messages = new Messages(this);
-		
+
 		RankConfig.RegisterRank();
 		messages.registerMessages();
 		getConfig().addDefault("Hypixel.Messages.Server.Prefix", "&6[HP]");
@@ -60,11 +63,19 @@ public class HypixelCore extends JavaPlugin{
 	}
 	public void MessageStartUp(){
 		ConsoleCommandSender s = Bukkit.getConsoleSender();
-		
+
 		s.sendMessage(ChatColor.GOLD + "");
 	}
-    public static HypixelCore getInstance() {
-        return instance;
-    }
-    
+	public static HypixelCore getInstance() {
+		return instance;
+	}
+	public void registerRankTag(){
+		if(s.getTeam("Ranks") != null){
+			s.getTeam("Ranks").unregister();
+		}
+		if(s.getTeam("Non") != null){
+			s.getTeam("Non").unregister();
+		}
+	}
+
 }
