@@ -11,7 +11,7 @@ import me.Ikeetjeop.hypixel.utilities.Rank;
 import me.Ikeetjeop.hypixel.utilities.Text;
 import me.Ikeetjeop.hypixel.utilities.Text.text;
 
-public class Flycmd implements CommandExecutor{
+public class FlyCMD implements CommandExecutor{
 
 	/*
 	 * @ikeetjeop
@@ -55,7 +55,7 @@ public class Flycmd implements CommandExecutor{
 						}
 					} 
 				}else {
-					Text.message(p, text.RankAccess, Rank.valueOf("VIP").Color + Rank.valueOf("VIP").GetPrefix());
+					Text.message(p, text.RankAccess, Rank.valueOf("VIP").color + Rank.valueOf("VIP").GetPrefix());
 				}
 			}
 		}

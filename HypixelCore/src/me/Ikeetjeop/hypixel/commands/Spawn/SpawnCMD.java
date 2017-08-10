@@ -8,10 +8,10 @@ import org.bukkit.entity.Player;
 import me.Ikeetjeop.hypixel.HypixelCore;
 import me.Ikeetjeop.hypixel.configManagement.SpawnData;
 
-public class Spawncmd implements CommandExecutor{
+public class SpawnCMD implements CommandExecutor{
 	private HypixelCore plugin;
 
-	public Spawncmd(HypixelCore plugin){
+	public SpawnCMD(HypixelCore plugin){
 		this.plugin = plugin;
 	}
 	private SpawnData spawn;

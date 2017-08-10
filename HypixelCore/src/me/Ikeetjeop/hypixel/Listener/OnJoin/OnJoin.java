@@ -32,18 +32,18 @@ public class OnJoin implements Listener{
 			}
 		}else{
 			try{
-				HypixelCore.getInstance().s.registerNewTeam("Ranks").setPrefix(Rank.getRank(p).Color + Rank.getRank(p).Prefix.replace("{Mpluse}", ChatColor.RED + "+" + ChatColor.AQUA) + " ");
+				HypixelCore.getInstance().s.registerNewTeam("Ranks").setPrefix(Rank.getRank(p).color + Rank.getRank(p).prefix.replace("{Mpluse}", ChatColor.RED + "+" + ChatColor.AQUA) + " ");
 				HypixelCore.getInstance().s.registerNewTeam("Ranks").addPlayer(p.getPlayer());
-				p.setPlayerListName(Rank.getRank(p).Color + ChatColor.translateAlternateColorCodes('&', Rank.getRank(p).Prefix.replace("{Mpluse}", UserDataHandler.getUserFile(p).getString("Pluse") + "&b").replace("{Vpluse}", "&6+&a")) + " " + p.getName());
+				p.setPlayerListName(Rank.getRank(p).color + ChatColor.translateAlternateColorCodes('&', Rank.getRank(p).prefix.replace("{Mpluse}", UserDataHandler.getUserFile(p).getString("Pluse") + "&b").replace("{Vpluse}", "&6+&a")) + " " + p.getName());
 			}catch (IllegalArgumentException a) {
-				HypixelCore.getInstance().s.getTeam("Ranks").setPrefix(Rank.getRank(p).Color + Rank.getRank(p).Prefix.replace("{Mpluse}", ChatColor.RED + "+" + ChatColor.AQUA) + " ");
+				HypixelCore.getInstance().s.getTeam("Ranks").setPrefix(Rank.getRank(p).color + Rank.getRank(p).prefix.replace("{Mpluse}", ChatColor.RED + "+" + ChatColor.AQUA) + " ");
 				HypixelCore.getInstance().s.getTeam("Ranks").addPlayer(p.getPlayer());
 			}
 		}
 
 		if(ranks.piority == 100 || UserDataHandler.getUserFile(p).getBoolean("JoinAlert")){
 
-			e.setJoinMessage(Rank.getRank(p).Color + Rank.getRank(p).Prefix.replace("{Mpluse}", ChatColor.RED + "+" + ChatColor.AQUA) + " " + p.getName() + ChatColor.GOLD + " joined the lobby!");
+			e.setJoinMessage(Rank.getRank(p).color + Rank.getRank(p).prefix.replace("{Mpluse}", ChatColor.RED + "+" + ChatColor.AQUA) + " " + p.getName() + ChatColor.GOLD + " joined the lobby!");
 		} else {
 			e.setJoinMessage(null);
 		}

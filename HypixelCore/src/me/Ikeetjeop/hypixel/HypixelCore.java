@@ -9,9 +9,9 @@ import org.bukkit.scoreboard.Scoreboard;
 
 import me.Ikeetjeop.hypixel.Listener.Chat.ChatListener;
 import me.Ikeetjeop.hypixel.Listener.OnJoin.OnJoin;
-import me.Ikeetjeop.hypixel.commands.Fly.Flycmd;
+import me.Ikeetjeop.hypixel.commands.Fly.FlyCMD;
 import me.Ikeetjeop.hypixel.commands.Spawn.SetSpawn;
-import me.Ikeetjeop.hypixel.commands.Spawn.Spawncmd;
+import me.Ikeetjeop.hypixel.commands.Spawn.SpawnCMD;
 import me.Ikeetjeop.hypixel.commands.UpdateRank.RankCMD;
 import me.Ikeetjeop.hypixel.configManagement.Messages;
 import me.Ikeetjeop.hypixel.configManagement.RankConfig;
@@ -33,8 +33,8 @@ public class HypixelCore extends JavaPlugin{
 	}
 	public void RegisterCommands(){
 		getCommand("setlobby").setExecutor(new SetSpawn(this));
-		getCommand("spawn").setExecutor(new Spawncmd(this));
-		getCommand("fly").setExecutor(new Flycmd());
+		getCommand("spawn").setExecutor(new SpawnCMD(this));
+		getCommand("fly").setExecutor(new FlyCMD());
 		getCommand("rank").setExecutor(new RankCMD());
 
 	}

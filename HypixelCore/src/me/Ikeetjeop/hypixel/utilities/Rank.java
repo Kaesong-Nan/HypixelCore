@@ -26,27 +26,27 @@ public enum Rank
 	VIP("Vip", "[VIP]", 40,ChatColor.GREEN),
 	DEFAULT("Default", "", 20, ChatColor.GRAY);
 
-	public String Name;
-	public String Prefix;
+	public String name;
+	public String prefix;
 	public int piority;
-	public ChatColor Color;
+	public ChatColor color;
 
-	private Rank(String name, String Prefix, int piority, ChatColor color)
+	private Rank(String name, String prefix, int piority, ChatColor color)
 	{
-		this.Name = name;
-		this.Prefix = Prefix;
+		this.name = name;
+		this.prefix = prefix;
 		this.piority = piority;
-		this.Color = color;
+		this.color = color;
 	}
 
 	public String GetName() {
-		return this.Name;
+		return this.name;
 	}
 	public String GetPrefix() {
-		return this.Prefix;
+		return this.prefix;
 	}
 	public ChatColor getColor() {
-		return this.Color;
+		return this.color;
 	}
 
 	public static Rank getRank(Player player) {

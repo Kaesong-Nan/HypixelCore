@@ -34,7 +34,7 @@ public class RankCMD implements CommandExecutor{
 						} else if(args[0].equalsIgnoreCase("list")){
 							Text.message(sender, text.sendMessage ,"Rank list:");
 							for(Rank r :  Rank.values())
-								Text.message(sender, text.sendMessage ,">> " + ChatColor.YELLOW + "Name: " + ChatColor.GOLD +  r.toString().toLowerCase() + ChatColor.YELLOW + " Prefix: " + r.Color + r.Prefix.toString().replace("{Mpluse}", ChatColor.RED + "+" + ChatColor.AQUA).replace("{Vpluse}", ChatColor.GOLD + "+" + ChatColor.GREEN));
+								Text.message(sender, text.sendMessage ,">> " + ChatColor.YELLOW + "Name: " + ChatColor.GOLD +  r.toString().toLowerCase() + ChatColor.YELLOW + " Prefix: " + r.color + r.prefix.toString().replace("{Mpluse}", ChatColor.RED + "+" + ChatColor.AQUA).replace("{Vpluse}", ChatColor.GOLD + "+" + ChatColor.GREEN));
 						}
 
 					}else if(args.length == 2){
@@ -76,7 +76,7 @@ public class RankCMD implements CommandExecutor{
 					} else if(args[0].equalsIgnoreCase("list")){
 						Text.message(sender, text.sendMessage ,"Rank list:");
 						for(Rank r :  Rank.values())
-							Text.message(sender, text.sendMessage ,">> " + ChatColor.YELLOW + "Name: " + ChatColor.GOLD +  r.toString().toLowerCase() + ChatColor.YELLOW + " Prefix: " + r.Color + r.Prefix.toString().replace("{Mpluse}", ChatColor.RED + "+" + ChatColor.AQUA).replace("{Vpluse}", ChatColor.GOLD + "+" + ChatColor.GREEN));
+							Text.message(sender, text.sendMessage ,">> " + ChatColor.YELLOW + "Name: " + ChatColor.GOLD +  r.toString().toLowerCase() + ChatColor.YELLOW + " Prefix: " + r.color + r.prefix.toString().replace("{Mpluse}", ChatColor.RED + "+" + ChatColor.AQUA).replace("{Vpluse}", ChatColor.GOLD + "+" + ChatColor.GREEN));
 					}
 				}else if(args.length == 2){
 					if(args[0].equalsIgnoreCase("set")){
@@ -94,7 +94,7 @@ public class RankCMD implements CommandExecutor{
 								if(Rank.getRank(target) == Rank.DEFAULT){
 									target.setPlayerListName(ChatColor.GRAY + target.getName());
 								}else {
-								target.setPlayerListName(Rank.getRank(target).Color + ChatColor.translateAlternateColorCodes('&', Rank.getRank(target).Prefix.replace("{Mpluse}", UserDataHandler.getUserFile(target).getString("Pluse") + "&b").replace("{Vpluse}", "&6+&a")) + " " + target.getName());
+								target.setPlayerListName(Rank.getRank(target).color + ChatColor.translateAlternateColorCodes('&', Rank.getRank(target).prefix.replace("{Mpluse}", UserDataHandler.getUserFile(target).getString("Pluse") + "&b").replace("{Vpluse}", "&6+&a")) + " " + target.getName());
 								}
 							}catch (IllegalArgumentException e) {
 								sender.sendMessage(ChatColor.GOLD + "Unknow rank!");
